@@ -9,33 +9,32 @@ import { Region } from '../../interfaces/region.type';
   templateUrl: './by-region-page.component.html',
   styles: ``
 })
-export class ByRegionPageComponent  implements OnInit{
+export class ByRegionPageComponent implements OnInit {
 
-  public countries:Country[]=[];
-  public regions:Region[]=['Africa','Americas','Asia','Europe','Oceania'];
-  public selectedRegion?:Region;
+  public countries: Country[] = [];
+  public regions: Region[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+  public selectedRegion?: Region;
 
-  public initialValue:string='';
-  public isLoading:boolean=false;
+  public isLoading: boolean = false;
 
-  constructor (private countriesService:CountriesService){}
+  constructor(private countriesService: CountriesService) { }
 
   ngOnInit(): void {
-   this.countries=this.countriesService.cacheStore.byRegion.countries;
-   this.initialValue=this.countriesService.cacheStore.byRegion.region;
+    this.countries = this.countriesService.cacheStore.byRegion.countries;
+    this.selectedRegion = this.countriesService.cacheStore.byRegion.region;
   }
 
   searchByRegion(region: Region): void {
-    this.isLoading=true;
-    this.selectedRegion=region;
-   this.countriesService.searchRegion(region).subscribe(countries=>{
-    this.countries=countries;
-    this.isLoading=false;
+    this.isLoading = true;
+    this.selectedRegion = region;
+    this.countriesService.searchRegion(region).subscribe(countries => {
+      this.countries = countries;
+      this.isLoading = false;
 
-   });
+    });
 
 
-   //console.log({region});
+    //console.log({region});
 
   }
 }

@@ -29,7 +29,6 @@ export class ByCountryPageComponent  implements OnInit{
     this.isLoading=false;
    });
 
-
    //console.log({term});
 
   }
